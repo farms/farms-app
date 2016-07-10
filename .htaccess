@@ -1,0 +1,15 @@
+# Do not remove this line or mod_rewrite rules and search engine friendly URLs will stop working
+RewriteBase /
+
+# Domain Redirection
+# Redirecting yourwebsite.com to www.yourwebsite.com
+RewriteCond %{HTTP_HOST} ^farms.nords.com.br
+RewriteRule (.*) http://www.farms.nords.com.br/$1 [R=301,L]
+
+# Cross domain access
+#Header add Access-Control-Allow-Origin "*"
+#Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+#Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
+
+# Disable Directory Browsing
+Options All -Indexes

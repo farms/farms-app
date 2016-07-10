@@ -1,0 +1,51 @@
+<!-- Project registration form. -->
+<div class="modal fade" id="create-modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Form title. -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="create-modal-title" id="modal-title">Create project</h4>
+      </div>
+
+      <!-- Start - Fields form -->
+      <div class="modal-body">
+        <div class="form-group" ng-class="{ 'has-error': form.tp_review.$dirty && form.tp_review.$error.required }">
+          <label for="tp_review">Review type</label>
+          <select id="tp_review" name="tp_review" class="form-control" ng-model="vm.project.tpReview">
+            <option value="">All types</option>
+            <option value="0">Not Systematic</option>
+            <option value="1">Systematic Mapping</option>
+            <option value="2">Systematic Review</option>
+          </select>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.ds_slug.$dirty && form.ds_slug.$error.required }">
+          <label for="ds_slug">Slug</label>
+          <input type="text" name="ds_slug" id="ds_slug" class="form-control" ng-model="vm.project.dsSlug" required />
+          <span ng-show="form.ds_slug.$dirty && form.ds_slug.$error.required" class="help-block">Slug is required.</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.ds_title.$dirty && form.ds_title.$error.required }">
+          <label for="ds_title">Title</label>
+          <input type="text" name="ds_title" id="ds_title" class="form-control" ng-model="vm.project.dsTitle" required />
+          <span ng-show="form.ds_title.$dirty && form.ds_title.$error.required" class="help-block">Title is required.</span>
+        </div>
+        <div class="form-group">
+          <label for="ds_project">Description:</label>
+          <textarea id="ds_project" name="ds_project" ng-model="vm.project.dsProject" class="form-control" rows="5"></textarea>
+        </div>
+      </div>
+      <!-- End - Fields form -->
+
+      <!-- Start - Action buttons. -->
+      <div class="modal-footer">
+        <button id="btn-create" type="button" class="btn btn-primary" ng-click="vm.createProject()"><i class="fa fa-check"></i>Salvar</button>
+        <button id="btn-update" type="button" class="btn btn-primary" ng-click="vm.updateProject()"><i class="fa fa-check"></i>Salvar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i>Cancelar</button>
+      </div>
+      <!-- End - Action buttons. -->
+
+      <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    </div>
+  </div>
+</div>

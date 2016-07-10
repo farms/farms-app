@@ -1,0 +1,39 @@
+ <!-- Start Register Form -->
+<div class="box-body">
+  <div class="form-bottom">
+    <form name="register_form" role="register_form">
+        <div class="form-group" ng-class="{ 'has-error': register_form.ruser_ds_name.$dirty && register_form.ruser_ds_name.$error.required }">
+            <label for="ruser_ds_name">Name</label>
+            <input type="text" name="ruser_ds_name" id="ruser_ds_name" class="form-control" ng-model="vm.ruser.nmResearcher" required />
+            <span ng-show="register_form.ruser_ds_name.$dirty && register_form.ruser_ds_name.$error.required" class="help-block">Name is required.</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': register_form.ruser_ds_sso.$dirty && register_form.ruser_ds_sso.$error.required }">
+            <label for="ruser_ds_sso">Username</label>
+            <input type="text" name="ruser_ds_sso" id="ruser_ds_sso" class="form-control" ng-model="vm.ruser.dsSSO" required />
+            <span ng-show="register_form.ruser_ds_sso.$dirty && register_form.ruser_ds_sso.$error.required" class="help-block">Username is required.</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': register_form.ruser_ds_email.$dirty && register_form.ruser_ds_email.$error.required }">
+            <label for="ruser_ds_email">Email</label>
+            <input type="text" name="ruser_ds_email" id="ruser_ds_email" class="form-control" ng-model="vm.ruser.dsEmail" required />
+            <span ng-show="register_form.ruser_ds_email.$dirty && register_form.ruser_ds_email.$error.required" class="help-block">Email is required.</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': register_form.ds_password.$dirty && register_form.ds_password.$error.required }">
+            <label for="ruser_ds_password">Password</label>
+            <input type="password" name="ruser_ds_password" id="ruser_ds_password" class="form-control" ng-model="vm.ruser.dsPassword" required />
+            <span ng-show="register_form.ruser_ds_password.$dirty && register_form.ruser_ds_password.$error.required" class="help-block">Password is required.</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': (register_form.ruser_ds_confirm_password.$dirty && register_form.ruser_ds_confirm_password.$error.required) || ((register_form.ruser_ds_password.$dirty && register_form.ruser_ds_confirm_password.$dirty) && (vm.ruser.dsPassword != vm.ruser.dsConfirmPassword)) }">
+            <label for="ruser_ds_confirm_password">Confirm password</label>
+            <input type="password" name="ruser_ds_confirm_password" id="ruser_ds_confirm_password" class="form-control" ng-model="vm.ruser.dsConfirmPassword" required />
+            <span ng-show="(register_form.ruser_ds_confirm_password.$dirty && register_form.ruser_ds_confirm_password.$error.required) || ((register_form.ruser_ds_confirm_password.$dirty && register_form.ruser_ds_confirm_password.$dirty) && (vm.ruser.dsPassword != vm.ruser.dsConfirmPassword))" class="help-block">
+              Password and password confirmation mismatched.
+            </span>
+        </div>
+        <div class="form-actions">
+            <button ng-click="vm.register(); register_form.$setPristine();" ng-disabled="register_form.$invalid || vm.rDataLoading" class="btn btn-success">Register</button>
+            <img ng-if="vm.rDataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+    </form>
+  </div>
+</div>
+<!-- End Register Form -->

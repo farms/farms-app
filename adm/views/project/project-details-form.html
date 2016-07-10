@@ -1,0 +1,223 @@
+<!-- Project informations form. -->
+<div class="modal fade" id="read-modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Form title. -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="read-modal-title">Project</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Tabs. -->
+        <div class="nav-tabs-custom">
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-target="#project-tab2" data-toggle="tab">Project</a></li>
+            <li><a data-target="#main-question-tab2" data-toggle="tab">Main Question</a></li>
+            <li><a data-target="#secondary-question-tab2" data-toggle="tab">Secondary Question</a></li>
+            <li><a data-target="#language-tab2" data-toggle="tab">Language</a></li>
+            <li><a data-target="#selection-criteria-tab2" data-toggle="tab">Selection Criteria</a></li>
+            <li><a data-target="#search-keyword-tab2" data-toggle="tab">Search Keyword</a></li>
+            <li><a data-target="#standard-query-tab2" data-toggle="tab">Standard Query</a></li>
+            <li><a data-target="#search-engine-tab2" data-toggle="tab">Search engine</a></li>
+          </ul>
+          <div class="tab-content">
+            <!-- Start: Project tab. -->
+            <div id="project-tab2" class="tab-pane active">
+              <div class="form-inline">
+                <div class="form-group">
+                  <label for="name">Review type:</label>
+                  <div class="form-control-static" ng-if="vm.project.tpReview == 0">
+                    Not Systematic
+                  </div>
+                  <div class="form-control-static" ng-if="vm.project.tpReview == 1">
+                    Systematic Mapping
+                  </div>
+                  <div class="form-control-static" ng-if="vm.project.tpReview == 2">
+                    Systematic Review
+                  </div>
+                </div>
+              </div>
+              <div class="form-inline">
+                <div class="form-group">
+                  <label for="nome">Title:</label>
+                  <div class="form-control-static">{{ vm.project.dsTitle }}</div>
+                </div>
+              </div>
+              <div class="form-inline">
+                <div class="form-group">
+                  <label for="name">Description:</label>
+                  <div for="name" class="form-control-static" >{{ vm.project.description }}</div>
+                </div>
+              </div>
+            </div>
+            <!-- Start: Project tab. -->
+
+            <!-- Start: Project tab. -->
+            <div id="project-tab2" class="tab-pane active">
+              <div class="form-inline">
+              <div class="form-inline">
+                <div class="form-group">
+                  <label for="name">Description:</label>
+                  <div for="name" class="form-control-static" >{{ vm.project.mainQuestion }}</div>
+                </div>
+              </div>
+            </div>
+            <!-- Start: Project tab. -->
+
+            <!-- Main Question -->
+            <div class="tab-pane" id="dependentes-tab2">
+              <div class="box-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th class="width-60-pct">#</th>
+                      <th class="width-60-pct">Nome</th>
+                      <th class="width-60-pct">Telefone</th>
+                      <th class="width-30-pct">Parentesco</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-hide="vm.morador.dependentes.length > 0">
+                      <td align="center" colspan="5">O morador não possui dependentes cadastrados.</td>
+                    </tr>
+                    <tr ng-repeat="dependente in vm.morador.dependentes">
+                      <td class="width-30-pct">{{$index + 1}}</td>
+                      <td class="width-30-pct">{{ dependente.nm_dependente | uppercase }}</td>
+                      <td class="width-30-pct">{{ dependente.nr_telefone }}</td>
+                      <td class="width-30-pct">{{ dependente.ds_parentesco | uppercase }}</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th class="width-60-pct">#</th>
+                      <th class="width-60-pct">Nome</th>
+                      <th class="width-60-pct">Telefone</th>
+                      <th class="width-30-pct">Parentesco</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+            <!-- Fim Tab Dependentes -->
+
+            <!-- Início Tab Veículos -->
+            <div class="tab-pane" id="veiculos-tab2">
+              <div class="tab-pane" id="dependentes-tab2">
+                <div class="box-body">
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th class="width-60-pct">#</th>
+                        <th class="width-60-pct">Modelo</th>
+                        <th class="width-60-pct">Marca</th>
+                        <th class="width-60-pct">Cor</th>
+                        <th class="width-30-pct">Placa</th>
+                      </tr>
+                      <tbody>
+                        <tr ng-hide="vm.morador.veiculos.length > 0">
+                          <td align="center" colspan="5">O morador não possui veículos cadastrados.</td>
+                        </tr>
+                        <tr ng-repeat="veiculo in vm.morador.veiculos">
+                          <td>{{$index + 1}}</td>
+                          <td>{{ veiculo.ds_modelo }}</td>
+                          <td>{{ veiculo.ds_marca }}</td>
+                          <td>{{ veiculo.nm_cor }}</td>
+                          <td>{{ veiculo.cd_placa }}</td>
+                        </tr>
+                      </tbody>
+                    <tfoot>
+                      <tr>
+                        <th class="width-60-pct">#</th>
+                        <th class="width-60-pct">Modelo</th>
+                        <th class="width-60-pct">Marca</th>
+                        <th class="width-60-pct">Cor</th>
+                        <th class="width-30-pct">Placa</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Fim Tab Veículos -->
+
+            <!-- Início Tab Empregados -->
+            <div class="tab-pane" id="emp-domesticos-tab2">
+              <div class="tab-pane" id="dependentes-tab2">
+                <div class="box-body">
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th class="width-60-pct">#</th>
+                        <th class="width-60-pct">Nome</th>
+                        <th class="width-60-pct">Telefone</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-hide="vm.morador.empregadosDomesticos.length > 0">
+                        <td align="center" colspan="5">O morador não possui empregados domésticos cadastrados.</td>
+                      </tr>
+                      <tr ng-repeat="empregadoDomestico in vm.morador.empregadosDomesticos">
+                        <td class="width-30-pct">{{$index + 1}}</td>
+                        <td class="width-30-pct">{{ empregadoDomestico.nm_empregado_domestico | uppercase }}</td>
+                        <td class="width-30-pct">{{ empregadoDomestico.nr_telefone }}</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th class="width-60-pct">#</th>
+                        <th class="width-60-pct">Nome</th>
+                        <th class="width-60-pct">Telefone</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Fim Tab Empregados -->
+
+            <!-- Início Tab Animais -->
+            <div class="tab-pane" id="animais-tab2">
+              <div class="tab-pane" id="dependentes-tab2">
+                <div class="box-body">
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th class="width-60-pct">#</th>
+                        <th class="width-60-pct">Espécie</th>
+                        <th class="width-60-pct">Quantidade</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-hide="vm.morador.animais.length > 0">
+                        <td align="center" colspan="5">O morador não possui animais cadastrados.</td>
+                      </tr>
+                      <tr ng-repeat="animal in vm.morador.animais">
+                        <td class="width-30-pct">{{$index + 1}}</td>
+                        <td class="width-30-pct">{{ animal.ds_especie | uppercase }}</td>
+                        <td class="width-30-pct">{{ animal.qt_especie }}</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th class="width-60-pct">#</th>
+                        <th class="width-60-pct">Espécie</th>
+                        <th class="width-60-pct">Quantidade</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Fim Tab Animais -->
+
+          </div>
+        </div>
+      </div>
+      <!-- Botões do formulário: Salvar e Cancelar. -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Sair </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

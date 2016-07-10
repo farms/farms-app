@@ -1,0 +1,53 @@
+<!-- CSS -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+<link rel="stylesheet" href="assets/css/form-elements.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script src="assets/js/jquery.backstretch.min.js"></script>
+
+<script>
+  $.backstretch(["img/background.jpg"]);
+</script>
+
+<div class="top-content">
+  <div class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 form-box text">
+          <img src="img/logo.png"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 form-box">
+          <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+          <div class="nav-tabs-custom" ng-init="tab=1">
+            <ul class="nav nav-tabs">
+              <li class="active"><a ng-click="tab=1" ng-class="{'active' : tab==1}" data-toggle="tab">Log in</a></li>
+              <li><a ng-click="tab=2" ng-class="{'active' : tab==2}" data-toggle="tab">Register</a></li>
+              <li><a ng-click="tab=3" ng-class="{'active' : tab==3}" data-toggle="tab">Forgot password?</a></li>
+            </ul>
+            <div class="tabs-container">
+              <!-- Start Login Tab -->
+              <div class="tab-content" ng-show="tab == 1">
+                <div ng-include="'account/login-form.html'"></div>
+              </div>
+              <!-- End Login Tab -->
+
+              <!-- Start Register Tab -->
+              <div class="tab-content" ng-show="tab == 2">
+                <div ng-include="'account/register-form.html'"></div>
+              </div>
+              <!-- End Register Tab -->
+
+              <!-- Start Forgot Password Tab -->
+              <div class="tab-content" ng-show="tab == 3">
+                <div ng-include="'account/forgot-password-form.html'"></div>
+              </div>
+              <!-- End Forgot Password Tab -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
