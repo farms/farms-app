@@ -22,28 +22,22 @@
       </div>
 
       <div class="panel-body">
-
-        <!-- TpReview filter -->
-        <!--div class="form-group">
-          <label for="tpReview">Review type</label>
-          <select id="tpReview" name="tpReview" class="form-control" ng-model="vm.tpReviewSearch">
-            <option value="">All types</option>
-            <option value="0">Not Systematic</option>
-            <option value="1">Systematic Mapping</option>
-            <option value="2">Systematic Review</option>
-          </select>
-        </div-->
-
-        <!--  DsSlug filter -->
-        <!--div class="form-group">
-          <label for="dsSlug">Slug</label>
-          <input type="text" ng-model="vm.dsSlugSearch" class="form-control" >
-        </div-->
-
         <!-- DsTilte filter -->
         <div class="form-group">
           <label for="ds_title">Title</label>
           <input id="ds_title" name="ds_title" type="text" ng-model="vm.dsTitleSearch" class="form-control">
+        </div>
+
+        <!-- Year filter -->
+        <div class="form-group">
+          <label for="ds_title">Year</label>
+          <input id="nr_year" name="nr_year" type="text" ng-model="vm.nrYearSearch" class="form-control">
+        </div>
+
+        <!-- Author filter -->
+        <div class="form-group">
+          <label for="nm_author">Author</label>
+          <input id="nm_author" name="nm_author" type="text" ng-model="vm.nmAuthorSearch" class="form-control">
         </div>
       </div>
     </div> <!-- End filter the list of studies. -->

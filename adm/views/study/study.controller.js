@@ -32,9 +32,9 @@
     vm.deleteStudy = deleteStudy;
 
     vm.studiesByFilter = studiesByFilter;
-    vm.tpReviewSearch = "";
-    vm.dsSlugSearch = "";
     vm.dsTitleSearch = "";
+    vm.nrYearSearch = "";
+    vm.nmAuthorSearch = "";
 
     // Pagination functions
     vm.range = range;
@@ -208,7 +208,11 @@
     function studiesByFilter() {
         return vm.studies.filter(function(study) {
            return (study.dsTitle.toString().indexOf(vm.dsTitleSearch) > -1
-                              || study.dsTitle.toLowerCase().indexOf(vm.dsTitleSearch.toLowerCase()) > -1);
+                              || study.dsTitle.toLowerCase().indexOf(vm.dsTitleSearch.toLowerCase()) > -1)
+                    && (study.nrYear == null || study.nrYear.toString().indexOf(vm.nrYearSearch) > -1
+                                       || study.nrYear.toString().toLowerCase().indexOf(vm.nrYearSearch.toLowerCase()) > -1)
+                     && (study.nmAuthor == null || study.nmAuthor.toString().indexOf(vm.nmAuthorSearch) > -1
+                                        || study.nmAuthor.toString().toLowerCase().indexOf(vm.nmAuthorSearch.toLowerCase()) > -1);
         });
     };
     /****** End filters functions *****/
