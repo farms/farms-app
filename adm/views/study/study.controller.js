@@ -19,12 +19,14 @@
 
     vm.clearForm = clearForm;
     vm.showCreateForm = showCreateForm;
+    vm.showImportForm = showImportForm;
     vm.showEditForm = showEditForm;
     vm.showReadForm = showReadForm;
 
     vm.getAllStudies = getAllStudies;
     vm.getStudyByCdCite = getStudyByCdCite;
     vm.createStudy = createStudy;
+    vm.importStudy = importStudy;
     vm.readStudy = readStudy;
     vm.updateStudy = updateStudy;
     vm.deleteStudy = deleteStudy;
@@ -50,12 +52,19 @@
     // Forms
     function clearForm() {
       vm.study = null;
+      vm.flStudy = null;
     }
 
     function showCreateForm() {
       clearForm();
       $('#create-modal-title').text("Create Study");
       $('#create-modal-form').modal({backdrop: 'static', keyboard: false, show: true, closable: false});
+    }
+
+    function showImportForm() {
+      clearForm();
+      $('#import-modal-title').text("Import Study");
+      $('#import-modal-form').modal({backdrop: 'static', keyboard: false, show: true, closable: false});
     }
 
     function showEditForm() {
@@ -78,7 +87,11 @@
     function getAllStudies() {
       vm.dataLoading = true;
       var currentProject = $cookieStore.get("currentProject");
-      ProjectService.GetStudiesByDsSlug(currentProject.dsSlug).then(function (response) {
+      var dsSlug = null;
+      if (currentProject != null) {
+        dsSlug = currentProject.dsSlug;
+      }
+      ProjectService.GetStudiesByDsSlug(dsSlug).then(function (response) {
         //if (response.code === 1000) {
           var studies = response;
           vm.studies = studies;
@@ -107,6 +120,23 @@
     }
 
     function createStudy() {
+      //alert(vm.study.tpReview  + " " + vm.study.dsSlug + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
+      /*vm.dataLoading = true;
+      StudyService.Create(vm.study).then(function (response) {
+        console.log(response.data);
+        if (response.code === 1002) {
+          FlashService.Success(response.description, true);
+          vm.study = null;
+          $('#create-modal-form').closeModal();
+          vm.getAllStudies();
+        } else {
+          FlashService.Error(response.description, true);
+          vm.dataLoading = false;
+        }
+      });*/
+    };
+
+    function importStudy() {
       //alert(vm.study.tpReview  + " " + vm.study.dsSlug + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
       /*vm.dataLoading = true;
       StudyService.Create(vm.study).then(function (response) {

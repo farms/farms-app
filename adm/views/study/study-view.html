@@ -9,6 +9,9 @@
     <button type="button" class="btn btn-primary" ng-click="vm.showCreateForm()">
       <i class="fa fa-plus"></i> Create
     </button>
+    <button type="button" class="btn btn-success" ng-click="vm.showImportForm()">
+      <i class="fa fa-arrow-circle-down"></i> Import
+    </button>
   </div>
 
   <div class="box">
@@ -80,56 +83,49 @@
       <table class="table table-bordered table-hover">
         <thead>
           <tr>
-            <th class="width-60-pct">#</th>
-            <!--th class="width-60-pct">Review type</th>
-            <th class="width-60-pct">Slug</th-->
+            <!--th class="width-60-pct">#</th-->
+            <th class="width-30-pct">Cite key</th>
             <th class="width-30-pct">Title</th>
+            <th class="width-30-pct">Year</th>
+            <th class="width-30-pct">Authors</th>
             <th class="text-align-center">Actions</th>
           </tr>
         </thead>
         <tbody>
+          <tr ng-hide="vm.studiesByFilter().length > 0">
+            <td align="center" colspan="5">No study found.</td>
+          </tr>
           <tr ng-if="vm.dataLoading">
             <td colspan="9" align="center">
               <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             </td>
           </tr>
           <tr ng-repeat="study in vm.studiesByFilter() | pagination : vm.currentPage*vm.itemsPerPage | limitTo: vm.itemsPerPage">
-            <td class="width-30-pct">{{$index + 1}}</td>
-            <!--td class="width-30-pct">
-              <div class="width-30-pct" ng-if="project.tpReview == 0">
-                Not Systematic
-              </div>
-              <div class="width-30-pct" ng-if="project.tpReview == 1">
-                Systematic Mapping
-              </div>
-              <div class="width-30-pct" ng-if="project.tpReview == 2">
-                Systematic Review
-              </div>
-            </td-->
+            <!--td class="width-30-pct">{{ $index + 1 }}</td-->
+            <td class="width-30-pct">{{ study.cdCiteKey }}</td>
             <td class="width-30-pct">{{ study.dsTitle }}</td>
-            <!--td class="width-30-pct">{{ project.dsTitle }}</td-->
-            <!--td class="center">
-              <button type="button" class="btn btn-default" ng-click="vm.openStudy(study.dSlug)">
-                <span class="glyphicon glyphicon-open"></span>
-              </button>
-              <button type="button" class="btn btn-default" ng-click="vm.readStudy(study.dsSlug)">
+            <td class="width-30-pct">{{ study.nrYear }}</td>
+            <td class="width-30-pct">{{ study.nmAuthor }}</td>
+            <td class="center">
+              <!--button type="button" class="btn btn-default" ng-click="vm.readStudy(study.dsSlug)">
                 <span class="glyphicon glyphicon-eye-open"></span>
-              </button>
+              </button-->
               <button type="button" class="btn btn-warning" ng-click="vm.editStudy(study)">
                 <span class="glyphicon glyphicon-pencil"></span>
               </button>
               <button type="button" class="btn btn-danger" ng-click="vm.deleteStudy(study.dsSlug)">
                 <span class="glyphicon glyphicon-trash"></span>
               </button>
-            </td-->
+            </td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <th class="width-60-pct">#</th>
-            <!--th class="width-60-pct">Review type</th>
-            <th class="width-60-pct">Slug</th-->
+            <!--th class="width-60-pct">#</th-->
+            <th class="width-30-pct">Cite key</th>
             <th class="width-30-pct">Title</th>
+            <th class="width-30-pct">Year</th>
+            <th class="width-30-pct">Authors</th>
             <th class="text-align-center">Actions</th>
           </tr>
         </tfoot>
@@ -140,11 +136,14 @@
     <!-- Modal form registration. -->
     <!--div ng-include="'adm/views/study/study-create-form.html'"></div-->
 
+    <!-- Importation Modal form. -->
+    <div ng-include="'adm/views/study/study-import-form.html'"></div>
+
     <!-- Modal form details. -->
     <!--div ng-include="'adm/views/study/study-details-form.html'"></div-->
 
     <!-- Modal confirmation message. -->
-    <div ng-include="'adm/views/adm/confirmation-message-modal.html'"></div>
+    <div ng-include="'adm/views/message/confirmation-message-modal.html'"></div>
 
     <!-- end col s12 -->
   </div>

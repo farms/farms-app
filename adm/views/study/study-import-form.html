@@ -1,0 +1,32 @@
+<!-- Study import form. -->
+<div class="modal fade" id="import-modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Form title. -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="import-modal-title" id="modal-title">Import study</h4>
+      </div>
+
+      <!-- Start - Fields form -->
+      <div class="modal-body">
+        <div class="form-group" ng-class="{ 'has-error': form.fl_study.$dirty && form.fl_study.$error.required }">
+          <label for="fl_study">File study</label>
+          <input type = "file" file-model = "myFile" id="fl_study" class="form-control" ng-model="vm.study.flStudy" required />
+          <span ng-show="form.fl_study.$dirty && form.fl_study.$error.required" class="help-block">File is required.</span>
+        </div>
+      </div>
+      <!-- End - Fields form -->
+
+      <!-- Start - Action buttons. -->
+      <div class="modal-footer">
+        <button id="btn-import" type="button" class="btn btn-primary" ng-click="vm.importStudy()"><i class="fa fa-check"></i>Import</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i>Cancelar</button>
+      </div>
+      <!-- End - Action buttons. -->
+
+      <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    </div>
+  </div>
+</div>
