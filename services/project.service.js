@@ -10,6 +10,7 @@
         var service = {};
 
         service.GetAllByDsSsoResearcher = GetAllByDsSsoResearcher;
+        service.GetStudiesByDsSlug = GetStudiesByDsSlug;
         service.GetByDsSlug = GetByDsSlug;
         service.Create = Create;
         service.Update = Update;

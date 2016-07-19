@@ -17,7 +17,7 @@
 
         return service;
 
-        function GetAllByDsSlugProject() {
+        function GetAll() {
             return $http.get(API_SERVER.url + '/studies').then(handleSuccess, handleError);
         }
 

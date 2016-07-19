@@ -12,16 +12,16 @@
   </div>
 
   <div class="box">
-    <div class="panel-group"> <!-- Start filter the list of projects. -->
+    <div class="panel-group"> <!-- Start filter the list of studies. -->
 
       <div class="box-header">
-        <h3 class="box-title">Projecs</h3>
+        <h3 class="box-title">Studies</h3>
       </div>
 
       <div class="panel-body">
 
         <!-- TpReview filter -->
-        <div class="form-group">
+        <!--div class="form-group">
           <label for="tpReview">Review type</label>
           <select id="tpReview" name="tpReview" class="form-control" ng-model="vm.tpReviewSearch">
             <option value="">All types</option>
@@ -29,13 +29,13 @@
             <option value="1">Systematic Mapping</option>
             <option value="2">Systematic Review</option>
           </select>
-        </div>
+        </div-->
 
         <!--  DsSlug filter -->
-        <div class="form-group">
+        <!--div class="form-group">
           <label for="dsSlug">Slug</label>
           <input type="text" ng-model="vm.dsSlugSearch" class="form-control" >
-        </div>
+        </div-->
 
         <!-- DsTilte filter -->
         <div class="form-group">
@@ -43,11 +43,11 @@
           <input id="ds_title" name="ds_title" type="text" ng-model="vm.dsTitleSearch" class="form-control">
         </div>
       </div>
-    </div> <!-- End filter the list of projects. -->
+    </div> <!-- End filter the list of studies. -->
 
     <!-- Star pager -->
     <div class="text-center">
-      <ul class="pagination" ng-if="vm.projectsByFilter().length > 0">
+      <ul class="pagination" ng-if="vm.studiesByFilter().length > 0">
         <li ng-class="{disabled:vm.currentPage === 0}">
           <a href ng-click="vm.setPage(0)">««</a>
         </li>
@@ -65,24 +65,24 @@
         </li>
       </ul>
 
-      <div ng-show="(vm.projectsByFilter().length == 0 || vm.projectsByFilter().length == 1)">
-        <b>{{ "The query returned " + vm.projectsByFilter().length + " project." }}</b>
+      <div ng-show="(vm.studiesByFilter().length == 0 || vm.studiesByFilter().length == 1)">
+        <b>{{ "The query returned " + vm.studiesByFilter().length + " study." }}</b>
       </div>
 
-      <div ng-show="vm.projectsByFilter().length > 1">
-        <b>{{ "The query returned " + vm.projectsByFilter().length + " projects." }}</b>
+      <div ng-show="vm.studiesByFilter().length > 1">
+        <b>{{ "The query returned " + vm.studiesByFilter().length + " studies." }}</b>
       </div>
     </div>
     <!-- End pager -->
 
-    <!-- Start project list -->
+    <!-- Start study list -->
     <div class="box-body">
       <table class="table table-bordered table-hover">
         <thead>
           <tr>
             <th class="width-60-pct">#</th>
-            <th class="width-60-pct">Review type</th>
-            <th class="width-60-pct">Slug</th>
+            <!--th class="width-60-pct">Review type</th>
+            <th class="width-60-pct">Slug</th-->
             <th class="width-30-pct">Title</th>
             <th class="text-align-center">Actions</th>
           </tr>
@@ -93,9 +93,9 @@
               <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             </td>
           </tr>
-          <tr ng-repeat="project in vm.projectsByFilter() | pagination : vm.currentPage*vm.itemsPerPage | limitTo: vm.itemsPerPage">
+          <tr ng-repeat="study in vm.studiesByFilter() | pagination : vm.currentPage*vm.itemsPerPage | limitTo: vm.itemsPerPage">
             <td class="width-30-pct">{{$index + 1}}</td>
-            <td class="width-30-pct">
+            <!--td class="width-30-pct">
               <div class="width-30-pct" ng-if="project.tpReview == 0">
                 Not Systematic
               </div>
@@ -105,30 +105,30 @@
               <div class="width-30-pct" ng-if="project.tpReview == 2">
                 Systematic Review
               </div>
-            </td>
-            <td class="width-30-pct">{{ project.dsSlug }}</td>
-            <td class="width-30-pct">{{ project.dsTitle }}</td>
-            <td class="center">
-              <button type="button" class="btn btn-default" ng-click="vm.openProject(project.dsSlug)">
+            </td-->
+            <td class="width-30-pct">{{ study.dsTitle }}</td>
+            <!--td class="width-30-pct">{{ project.dsTitle }}</td-->
+            <!--td class="center">
+              <button type="button" class="btn btn-default" ng-click="vm.openStudy(study.dSlug)">
                 <span class="glyphicon glyphicon-open"></span>
               </button>
-              <button type="button" class="btn btn-default" ng-click="vm.readProject(project.dsSlug)">
+              <button type="button" class="btn btn-default" ng-click="vm.readStudy(study.dsSlug)">
                 <span class="glyphicon glyphicon-eye-open"></span>
               </button>
-              <button type="button" class="btn btn-warning" ng-click="vm.editProject(project)">
+              <button type="button" class="btn btn-warning" ng-click="vm.editStudy(study)">
                 <span class="glyphicon glyphicon-pencil"></span>
               </button>
-              <button type="button" class="btn btn-danger" ng-click="vm.deleteProject(project.dsSlug)">
+              <button type="button" class="btn btn-danger" ng-click="vm.deleteStudy(study.dsSlug)">
                 <span class="glyphicon glyphicon-trash"></span>
               </button>
-            </td>
+            </td-->
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <th class="width-60-pct">#</th>
-            <th class="width-60-pct">Review type</th>
-            <th class="width-60-pct">Slug</th>
+            <!--th class="width-60-pct">Review type</th>
+            <th class="width-60-pct">Slug</th-->
             <th class="width-30-pct">Title</th>
             <th class="text-align-center">Actions</th>
           </tr>
@@ -138,13 +138,13 @@
     <!-- End project list -->
 
     <!-- Modal form registration. -->
-    <div ng-include="'adm/views/project/project-create-form.html'"></div>
+    <!--div ng-include="'adm/views/study/study-create-form.html'"></div-->
 
     <!-- Modal form details. -->
-    <div ng-include="'adm/views/project/project-details-form.html'"></div>
+    <!--div ng-include="'adm/views/study/study-details-form.html'"></div-->
 
     <!-- Modal confirmation message. -->
-    <div ng-include="'adm/views/confirmation-message-modal.html'"></div>
+    <div ng-include="'adm/views/adm/confirmation-message-modal.html'"></div>
 
     <!-- end col s12 -->
   </div>

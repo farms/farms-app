@@ -5,10 +5,10 @@
   .module('app')
   .controller('StudyController', StudyController);
 
-  StudyController.$inject = ['StudyService', 'FlashService', '$rootScope', '$http', '$location', '$cookieStore', '$state'];
+  StudyController.$inject = ['StudyService', 'ProjectService', 'FlashService', '$rootScope', '$http', '$location', '$cookieStore', '$state'];
 
   /****** Início StudyController *****/
-  function StudyController(StudyService, FlashService, $rootScope, $http, $location, $cookieStore, $state) {
+  function StudyController(StudyService, ProjectService, FlashService, $rootScope, $http, $location, $cookieStore, $state) {
     var vm = this;
 
     //vm.dataLoading = true;
@@ -23,11 +23,11 @@
     vm.showReadForm = showReadForm;
 
     vm.getAllStudies = getAllStudies;
+    vm.getStudyByCdCite = getStudyByCdCite;
     vm.createStudy = createStudy;
     vm.readStudy = readStudy;
     vm.updateStudy = updateStudy;
     vm.deleteStudy = deleteStudy;
-    vm.openStudy = openStudy;
 
     vm.studiesByFilter = studiesByFilter;
     vm.tpReviewSearch = "";
@@ -77,8 +77,8 @@
 
     function getAllStudies() {
       vm.dataLoading = true;
-      var dsSso = $rootScope.globals.currentUser.dsUsername;
-      StudyService.GetAllByDsSsoResearcher(dsSso).then(function (response) {
+      var currentProject = $cookieStore.get("currentProject");
+      ProjectService.GetStudiesByDsSlug(currentProject.dsSlug).then(function (response) {
         //if (response.code === 1000) {
           var studies = response;
           vm.studies = studies;
@@ -91,9 +91,9 @@
       });
     }
 
-    function getStudyBySlug(dsSlug) {
+    function getStudyByCdCite(cdCite) {
       //vm.dataLoading = true;
-      StudyService.GetByDsSlug(dsSlug).then(function (response) {
+      StudyService.GetByCdCite(cdCite).then(function (response) {
         //console.log(response.data);
         //if (response.code === 1000) {
         var study = response;
@@ -123,9 +123,9 @@
       });*/
     };
 
-    function readStudy(slug) {
+    function readStudy(cdCiteKey) {
       //vm.dataLoading = true;
-      StudyService.GetByDsSlug(slug).then(function (response) {
+      StudyService.GetByCdCiteKey(cdCiteKey).then(function (response) {
         //console.log(response.data);
         //if (response.code === 1000) {
         vm.study = response;
@@ -137,7 +137,7 @@
       });
     }
 
-    function updateStudy() {
+    function updateStudy(study) {
       alert(vm.study.tpReview  + " " + vm.study.dsSlug + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
       /*
       vm.dataLoading = true;
@@ -155,7 +155,7 @@
       });*/
     };
 
-    function deleteStudy(slug) {
+    function deleteStudy(cdCiteKey) {
       showConfirmationMessage();
       /*vm.dataLoading = true;
       if (Do you really want to delete this study?) {
@@ -174,31 +174,11 @@
     }*/
     }
 
-    function openStudy(dsSlug) {
-      //vm.dataLoading = true;
-      StudyService.GetByDsSlug(dsSlug).then(function (response) {
-        //console.log(response.data);
-        //if (response.code === 1000) {
-        var study = response;
-        //alert(study.dsTitle);
-        $cookieStore.put('currentStudy', study);
-        $state.go($state.current, {}, {reload: true});
-        //} else {
-          // console.log(response.data);
-          //FlashService.Error(response.description);
-          //vm.dataLoading = false;
-        //}
-      });
-    }
-
     /****** Start filter functions *****/
     function studiesByFilter() {
         return vm.studies.filter(function(study) {
-           return (vm.tpReviewSearch == "" || (vm.tpReviewSearch > -1 && vm.tpReviewSearch == study.tpReview))
-                    && (study.dsSlug.toString().indexOf(vm.dsSlugSearch) > -1
-                          || study.dsSlug.toLowerCase().indexOf(vm.dsSlugSearch.toLowerCase()) > -1)
-                    && (study.dsTitle.toString().indexOf(vm.dsTitleSearch) > -1
-                          || study.dsTitle.toLowerCase().indexOf(vm.dsTitleSearch.toLowerCase()) > -1);
+           return (study.dsTitle.toString().indexOf(vm.dsTitleSearch) > -1
+                              || study.dsTitle.toLowerCase().indexOf(vm.dsTitleSearch.toLowerCase()) > -1);
         });
     };
     /****** End filters functions *****/
