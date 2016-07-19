@@ -88,6 +88,9 @@
           </tr>
         </thead>
         <tbody>
+          <tr ng-hide="vm.studiesByFilter().length > 0">
+            <td align="center" colspan="5">No project found.</td>
+          </tr>
           <tr ng-if="vm.dataLoading">
             <td colspan="9" align="center">
               <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
@@ -110,11 +113,11 @@
             <td class="width-30-pct">{{ project.dsTitle }}</td>
             <td class="center">
               <button type="button" class="btn btn-default" ng-click="vm.openProject(project.dsSlug)">
-                <span class="glyphicon glyphicon-open"></span>
+                <span class="glyphicon glyphicon-folder-open"></span>
               </button>
-              <button type="button" class="btn btn-default" ng-click="vm.readProject(project.dsSlug)">
+              <!--button type="button" class="btn btn-default" ng-click="vm.readProject(project.dsSlug)">
                 <span class="glyphicon glyphicon-eye-open"></span>
-              </button>
+              </button-->
               <button type="button" class="btn btn-warning" ng-click="vm.editProject(project)">
                 <span class="glyphicon glyphicon-pencil"></span>
               </button>
