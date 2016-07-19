@@ -66,6 +66,21 @@ desired effect
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
           <span class="sr-only">Toggle navigation</span>
         </a>
+
+        <!-- Title of the current project. -->
+        <div class="navbar-form navbar-left" role="titleCurrentProject">
+          <div class="form-control">
+            <label id="navbar-search-input">
+              <div ng-if="vm.project.dsTitle != null">
+                Project: {{vm.project.dsTitle}}
+              </div>
+              <div ng-if="vm.project.dsTitle == null">
+                None selected project.
+              </div>
+            </label>
+          </div>
+        </div>
+
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
@@ -78,8 +93,8 @@ desired effect
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">
                   {{vm.user.dsUsername}}
-                <span/>
-              </a>
+                  <span/>
+                </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
@@ -143,7 +158,6 @@ desired effect
         <section class="content-header">
           <h1>
             {{$state.current.title}}
-            <small><div>{{vm.project.dsTitle}}</div></small>
           </h1>
 
           <!-- inicio-breadcrumb -->
@@ -155,7 +169,7 @@ desired effect
         <!--section class="content"-->
 
         <div ui-view>
-          <div ng-include="'adm/dashboard.view.html'"></div>
+          <div ng-include="'adm/views/dashboard/dashboard.view.html'"></div>
         </div>
 
         <!--/section--><!-- /.content -->
