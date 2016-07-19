@@ -34,7 +34,7 @@
     .state('adm.dashboard', {
       url: "/dashboard",
       controller: 'DashboardController',
-      templateUrl: "adm/dashboard.view.html",
+      templateUrl: "adm/views/dashboard/dashboard.view.html",
       controllerAs: 'vm',
       data: {
         displayName: 'Home'
@@ -48,7 +48,8 @@
       title: 'Projects',
       data: {
         displayName: 'Projects'
-      }
+       }
+      })
       .state('adm.studies', {
         url: "/studies",
         controller: 'StudyController',
