@@ -22,23 +22,29 @@
       </div>
 
       <div class="panel-body">
+
         <!-- DsTilte filter -->
         <div class="form-group">
           <label for="ds_title">Title</label>
           <input id="ds_title" name="ds_title" type="text" ng-model="vm.dsTitleSearch" class="form-control">
         </div>
 
-        <!-- Year filter -->
-        <div class="form-group">
-          <label for="ds_title">Year</label>
-          <input id="nr_year" name="nr_year" type="text" ng-model="vm.nrYearSearch" class="form-control">
+        <div class="row">
+
+          <!-- Year filter -->
+          <div class="form-group col-xs-6">
+            <label for="ds_title">Year</label>
+            <input id="nr_year" name="nr_year" type="text" ng-model="vm.nrYearSearch" class="form-control">
+          </div>
+
+          <!-- Author filter -->
+          <div class="form-group col-xs-6">
+            <label for="nm_author">Author</label>
+            <input id="nm_author" name="nm_author" type="text" ng-model="vm.nmAuthorSearch" class="form-control">
+          </div>
+
         </div>
 
-        <!-- Author filter -->
-        <div class="form-group">
-          <label for="nm_author">Author</label>
-          <input id="nm_author" name="nm_author" type="text" ng-model="vm.nmAuthorSearch" class="form-control">
-        </div>
       </div>
     </div> <!-- End filter the list of studies. -->
 
