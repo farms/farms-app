@@ -31,10 +31,10 @@
           </select>
         </div>
 
-        <!--  DsSlug filter -->
+        <!--  DsKey filter -->
         <div class="form-group">
-          <label for="dsSlug">Slug</label>
-          <input type="text" ng-model="vm.dsSlugSearch" class="form-control" >
+          <label for="dsKey">Key</label>
+          <input type="text" ng-model="vm.dsKeySearch" class="form-control" >
         </div>
 
         <!-- DsTilte filter -->
@@ -82,7 +82,7 @@
           <tr>
             <th class="width-60-pct">#</th>
             <th class="width-60-pct">Review type</th>
-            <th class="width-60-pct">Slug</th>
+            <th class="width-60-pct">Key</th>
             <th class="width-30-pct">Title</th>
             <th class="text-align-center">Actions</th>
           </tr>
@@ -109,19 +109,16 @@
                 Systematic Review
               </div>
             </td>
-            <td class="width-30-pct">{{ project.dsSlug }}</td>
+            <td class="width-30-pct">{{ project.dsKey }}</td>
             <td class="width-30-pct">{{ project.dsTitle }}</td>
             <td class="center">
-              <button type="button" class="btn btn-default" ng-click="vm.openProject(project.dsSlug)">
+              <button type="button" class="btn btn-default" ng-click="vm.openProject(project.dsKey)">
                 <span class="glyphicon glyphicon-folder-open"></span>
               </button>
-              <!--button type="button" class="btn btn-default" ng-click="vm.readProject(project.dsSlug)">
-                <span class="glyphicon glyphicon-eye-open"></span>
-              </button-->
               <button type="button" class="btn btn-warning" ng-click="vm.editProject(project)">
                 <span class="glyphicon glyphicon-pencil"></span>
               </button>
-              <button type="button" class="btn btn-danger" ng-click="vm.deleteProject(project.dsSlug)">
+              <button type="button" class="btn btn-danger" ng-click="vm.deleteProject(project.dsKey)">
                 <span class="glyphicon glyphicon-trash"></span>
               </button>
             </td>
@@ -131,7 +128,7 @@
           <tr>
             <th class="width-60-pct">#</th>
             <th class="width-60-pct">Review type</th>
-            <th class="width-60-pct">Slug</th>
+            <th class="width-60-pct">Key</th>
             <th class="width-30-pct">Title</th>
             <th class="text-align-center">Actions</th>
           </tr>
@@ -142,9 +139,6 @@
 
     <!-- Modal form registration. -->
     <div ng-include="'adm/views/project/project-create-form.html'"></div>
-
-    <!-- Modal form details. -->
-    <div ng-include="'adm/views/project/project-details-form.html'"></div>
 
     <!-- Modal confirmation message. -->
     <div ng-include="'adm/views/message/confirmation-message-modal.html'"></div>

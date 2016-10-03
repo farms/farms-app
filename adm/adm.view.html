@@ -143,10 +143,79 @@ desired effect
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a ui-sref="adm"><i class="fa fa-link"></i> <span>Home</span></a></li>
-            <li><a ui-sref=".projects" ui-sref-active="active"><i class="fa fa-link"></i><span>Projects</span></a></li>
-            <li><a ui-sref=".studies" ui-sref-active="active"><i class="fa fa-link"></i><span>Studies</span></a></li>
+
+            <!-- Home -->
+            <li class="active"><a ui-sref="adm"><i class="fa fa-dashboard"></i> <span>Home</span></a></li>
+
+            <!-- Project definition -->
+            <li class="treeview">
+              <a href="javascript: void(0)">
+                <i class="fa fa-folder"></i> <span>Project definition</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a ui-sref=".projects" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Projects</span></a></li>
+                <li><a ui-sref=".institutions" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Institutions</span></a></li>
+                <li><a ui-sref=".members" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Members</span></a></li>
+              </ul>
+            </li>
+
+            <!-- Protocol -->
+            <li><a ui-sref=".protocol" ui-sref-active="active"><i class="fa fa-book"></i><span>Protocol</span></a></li>
+              
+            <!-- Studies Identification -->
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-files-o"></i> <span>Studies Identification</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a ui-sref=".studies" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Search</span></a></li>
+                <li><a ui-sref=".studies" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Studies</span></a></li>
+              </ul>
+            </li>
+
+            <!-- Selection Step -->
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-check-square-o"></i> <span>Selection Step</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a ui-sref=".projects" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Review</span></a></li>
+              </ul>
+            </li>
+
+            <!-- Data Extraction -->
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-database"></i> <span>Data Extraction</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a ui-sref=".projects" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Data required</span></a></li>
+                <li><a ui-sref=".members" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Category</span></a></li>
+                <li><a ui-sref=".members" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Option</span></a></li>
+                <li><a ui-sref=".members" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Classification</span></a></li>
+                <li><a ui-sref=".members" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Study Data</span></a></li>
+                <li><a ui-sref=".members" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Required data</span></a></li>
+                <li><a ui-sref=".members" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Author</span></a></li>
+                <li><a ui-sref=".members" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Study Summary</span></a></li>
+                <li><a ui-sref=".members" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Extraction</span></a></li>
+              </ul>
+            </li>
+
+            <!-- Charts and Reports -->
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-pie-chart"></i> <span>Charts and Reports</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a ui-sref=".projects" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>General</span></a></li>
+                <li><a ui-sref=".members" ui-sref-active="active"><i class="fa fa-circle-o"></i><span>Report</span></a></li>
+              </ul>
+            </li>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->

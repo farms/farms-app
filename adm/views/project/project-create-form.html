@@ -20,10 +20,10 @@
             <option value="2">Systematic Review</option>
           </select>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.ds_slug.$dirty && form.ds_slug.$error.required }">
-          <label for="ds_slug">Slug</label>
-          <input type="text" name="ds_slug" id="ds_slug" class="form-control" ng-model="vm.project.dsSlug" required />
-          <span ng-show="form.ds_slug.$dirty && form.ds_slug.$error.required" class="help-block">Slug is required.</span>
+        <div class="form-group" ng-class="{ 'has-error': form.ds_key.$dirty && form.ds_key.$error.required }">
+          <label for="ds_key">Key</label>
+          <input type="text" name="ds_key" id="ds_key" class="form-control" ng-model="vm.project.dsKey" required />
+          <span ng-show="form.ds_key.$dirty && form.ds_key.$error.required" class="help-block">Key is required.</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.ds_title.$dirty && form.ds_title.$error.required }">
           <label for="ds_title">Title</label>

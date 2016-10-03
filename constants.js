@@ -5,9 +5,9 @@
         .module('app')
         .constant('API_SERVER', {
           // Production
-          url: '/FarmsApi/rest'
+          //url: '/FarmsApi/rest'
 
           // Localhost
-          //url: '/farms-api/rest'
+          url: '/farms-api/rest'
         });
 })();

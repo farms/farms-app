@@ -48,17 +48,47 @@
       title: 'Projects',
       data: {
         displayName: 'Projects'
-       }
-      })
-      .state('adm.studies', {
-        url: "/studies",
-        controller: 'StudyController',
-        templateUrl: "adm/views/study/study-view.html",
-        controllerAs: 'vm',
-        title: 'Studies',
-        data: {
-          displayName: 'Studies'
-        }
+      }
+    })
+    .state('adm.institutions', {
+      url: "/project/institutions",
+      controller: 'InstitutionController',
+      templateUrl: "adm/views/institution/institution-view.html",
+      controllerAs: 'vm',
+      title: 'Institutions',
+      data: {
+        displayName: 'Institutions'
+      }
+    })
+    .state('adm.members', {
+      url: "/project/members",
+      controller: 'MemberController',
+      templateUrl: "adm/views/member/member-view.html",
+      controllerAs: 'vm',
+      title: 'Members',
+      data: {
+        displayName: 'Members'
+      }
+    })
+    .state('adm.studies', {
+      url: "/project/studies",
+      controller: 'StudyController',
+      templateUrl: "adm/views/study/study-view.html",
+      controllerAs: 'vm',
+      title: 'Studies',
+      data: {
+        displayName: 'Studies'
+      }
+    })
+    .state('adm.protocol', {
+      url: "/project/protocol",
+      controller: 'ProtocolController',
+      templateUrl: "adm/views/protocol/protocol-view.html",
+      controllerAs: 'vm',
+      title: 'Protocol',
+      data: {
+        displayName: 'Protocol'
+      }
     })
   }
 

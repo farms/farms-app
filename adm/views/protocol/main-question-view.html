@@ -1,0 +1,38 @@
+<!-- Start - Objectives form -->
+<div class="form-group">
+  <label for="ds_main_question">Main Question:</label>
+  <textarea id="ds_main_question" name="ds_main_question" ng-model="vm.protocol.mainQuestion.dsMainQuestion" class="form-control" rows="2"></textarea>
+</div>
+<div class="form-group">
+  <label for="ds_population">Population:</label>
+  <textarea id="ds_population" name="ds_population" ng-model="vm.protocol.mainQuestion.dsPopulation" class="form-control" rows="2"></textarea>
+</div>
+<div class="form-group">
+  <label for="ds_intervation">Intervation:</label>
+  <textarea id="ds_intervation" name="ds_intervation" ng-model="vm.protocol.mainQuestion.dsIntervation" class="form-control" rows="2"></textarea>
+</div>
+<div class="form-group">
+  <label for="ds_control">Control:</label>
+  <textarea id="ds_control" name="ds_control" ng-model="vm.protocol.mainQuestion.dsControl" class="form-control" rows="2"></textarea>
+</div>
+<div class="form-group">
+  <label for="ds_result">Result:</label>
+  <textarea id="ds_result" name="ds_result" ng-model="vm.protocol.mainQuestion.dsResult" class="form-control" rows="2"></textarea>
+</div>
+<div class="form-group">
+  <label for="ds_application_context">Application Context:</label>
+  <textarea id="ds_application_context" name="ds_application_context" ng-model="vm.protocol.mainQuestion.dsApplicationContext" class="form-control" rows="2"></textarea>
+</div>
+<div class="form-group">
+  <label for="ds_experimental_design">Experimental Design:</label>
+  <textarea id="ds_experimental_design" name="ds_experimental_design" ng-model="vm.protocol.mainQuestion.dsExperimentalDesign" class="form-control" rows="2"></textarea>
+</div>
+<!-- End - Objectives form -->
+
+<!-- Start - Action buttons -->
+<div class="modal-footer">
+    <button id="btn-save-questions" type="button" class="btn btn-primary" ng-click="vm.saveMainQuestion()">
+        <i class="fa fa-check"></i>Salvar
+    </button>
+</div>
+<!-- End - Action buttons -->

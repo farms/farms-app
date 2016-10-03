@@ -31,7 +31,7 @@
 
     vm.projectsByFilter = projectsByFilter;
     vm.tpReviewSearch = "";
-    vm.dsSlugSearch = "";
+    vm.dsKeySearch = "";
     vm.dsTitleSearch = "";
 
     // Pagination functions
@@ -91,9 +91,9 @@
       });
     }
 
-    function getProjectBySlug(dsSlug) {
+    function getProjectByKey(dsKey) {
       //vm.dataLoading = true;
-      ProjectService.GetByDsSlug(dsSlug).then(function (response) {
+      ProjectService.GetByDsKey(dsKey).then(function (response) {
         //console.log(response.data);
         //if (response.code === 1000) {
         var project = response;
@@ -107,7 +107,7 @@
     }
 
     function createProject() {
-      //alert(vm.project.tpReview  + " " + vm.project.dsSlug + " " + vm.project.dsTitle + " " + vm.project.dsProject);
+      //alert(vm.project.tpReview  + " " + vm.project.dsKey + " " + vm.project.dsTitle + " " + vm.project.dsProject);
       /*vm.dataLoading = true;
       ProjectService.Create(vm.project).then(function (response) {
         console.log(response.data);
@@ -123,9 +123,9 @@
       });*/
     };
 
-    function readProject(slug) {
+    function readProject(key) {
       //vm.dataLoading = true;
-      ProjectService.GetByDsSlug(slug).then(function (response) {
+      ProjectService.GetByDsKey(key).then(function (response) {
         //console.log(response.data);
         //if (response.code === 1000) {
         vm.project = response;
@@ -138,7 +138,7 @@
     }
 
     function updateProject() {
-      alert(vm.project.tpReview  + " " + vm.project.dsSlug + " " + vm.project.dsTitle + " " + vm.project.dsProject);
+      alert(vm.project.tpReview  + " " + vm.project.dsKey + " " + vm.project.dsTitle + " " + vm.project.dsProject);
       /*
       vm.dataLoading = true;
       ProjectService.Update(vm.project).then(function (response) {
@@ -155,7 +155,7 @@
       });*/
     };
 
-    function deleteProject(slug) {
+    function deleteProject(key) {
       showConfirmationMessage();
       /*vm.dataLoading = true;
       if (Do you really want to delete this project?) {
@@ -174,9 +174,9 @@
     }*/
     }
 
-    function openProject(dsSlug) {
+    function openProject(dsKey) {
       //vm.dataLoading = true;
-      ProjectService.GetByDsSlug(dsSlug).then(function (response) {
+      ProjectService.GetByDsKey(dsKey).then(function (response) {
         //console.log(response.data);
         //if (response.code === 1000) {
         var project = response;
@@ -195,8 +195,8 @@
     function projectsByFilter() {
         return vm.projects.filter(function(project) {
            return (vm.tpReviewSearch == "" || (vm.tpReviewSearch > -1 && vm.tpReviewSearch == project.tpReview))
-                    && (project.dsSlug.toString().indexOf(vm.dsSlugSearch) > -1
-                          || project.dsSlug.toLowerCase().indexOf(vm.dsSlugSearch.toLowerCase()) > -1)
+                    && (project.dsKey.toString().indexOf(vm.dsKeySearch) > -1
+                          || project.dsKey.toLowerCase().indexOf(vm.dsKeySearch.toLowerCase()) > -1)
                     && (project.dsTitle.toString().indexOf(vm.dsTitleSearch) > -1
                           || project.dsTitle.toLowerCase().indexOf(vm.dsTitleSearch.toLowerCase()) > -1);
         });

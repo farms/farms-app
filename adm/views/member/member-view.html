@@ -1,0 +1,128 @@
+<!-- MEMBER - CRUD -->
+<div class="content">
+
+<div class="row">
+<div class="col-xs-12">
+
+  <!-- Button to display the modal form registration. -->
+  <div class="form-group">
+    <button type="button" class="btn btn-success" ng-click="vm.showMemberInvitationForm()">
+      <i class="fa fa-arrow-circle-down"></i> Member Invitation
+    </button>
+  </div>
+
+  <div class="box">
+    <div class="panel-group"> <!-- Start filter the list of members. -->
+
+      <div class="box-header">
+        <h3 class="box-title">Members</h3>
+      </div>
+
+      <div class="panel-body">
+        <!-- NmResearcher filter -->
+        <div class="form-group">
+          <label for="nm_researcher">Name</label>
+          <input id="nm_researcher" name="nm_researcher" type="text" ng-model="vm.nmResearcherSearch" class="form-control">
+        </div>
+      </div>
+    </div> <!-- End filter the list of members. -->
+
+    <!-- Star pager -->
+    <div class="text-center">
+      <ul class="pagination" ng-if="vm.membersByFilter().length > 0">
+        <li ng-class="{disabled:vm.currentPage === 0}">
+          <a href ng-click="vm.setPage(0)">««</a>
+        </li>
+        <li ng-class="{disabled: vm.currentPage === 0}">
+          <a href ng-click="vm.prevPage()">«</a>
+        </li>
+        <li ng-repeat="n in vm.range()" ng-class="{active: n == vm.currentPage}">
+          <a href ng-click="vm.setPage(n)">{{n+1}}</a>
+        </li>
+        <li ng-class="{disabled:vm.currentPage === vm.pageCount()}">
+          <a href ng-click="vm.nextPage()">»</a>
+        </li>
+        <li ng-class="{disabled:vm.currentPage === vm.pageCount()}">
+          <a href ng-click="vm.setPage(vm.pageCount())">»»</a>
+        </li>
+      </ul>
+
+      <div ng-show="(vm.membersByFilter().length == 0 || vm.membersByFilter().length == 1)">
+        <b>{{ "The query returned " + vm.membersByFilter().length + " member." }}</b>
+      </div>
+
+      <div ng-show="vm.membersByFilter().length > 1">
+        <b>{{ "The query returned " + vm.membersByFilter().length + " members." }}</b>
+      </div>
+    </div>
+    <!-- End pager -->
+
+    <!-- Start member list -->
+    <div class="box-body">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="width-30-pct">Name</th>
+            <th class="width-30-pct">Username</th>
+            <th class="width-30-pct">Institution</th>
+            <th class="width-30-pct">Role</th>
+            <th class="width-30-pct">Active?</th>
+            <th class="text-align-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--tr ng-hide="vm.membersByFilter().length > 0">
+            <td align="center" colspan="5">No member found.</td>
+          </tr-->
+          <tr ng-if="vm.dataLoading">
+            <td colspan="9" align="center">
+              <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </td>
+          </tr>
+          <tr ng-repeat="member in vm.membersByFilter() | pagination : vm.currentPage*vm.itemsPerPage | limitTo: vm.itemsPerPage">
+            <td class="width-30-pct">{{ member.nmResearcher }}</td>
+            <td class="width-30-pct">{{ member.dsSSO }}</td>
+            <td class="width-30-pct">{{ member.nmInstitution }}</td>
+            <td class="width-30-pct">{{ member.tpRole }}</td>
+            <td class="width-30-pct">{{ member.tpConfirmed }}</td>
+            <td class="center">
+              <button type="button" class="btn btn-warning" ng-click="vm.editMember(member)">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </button>
+              <button type="button" class="btn btn-danger" ng-click="vm.deleteMember(member.dsSlug)">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th class="width-30-pct">Name</th>
+            <th class="width-30-pct">Username</th>
+            <th class="width-30-pct">Institution</th>
+            <th class="width-30-pct">Role</th>
+            <th class="width-30-pct">Active?</th>
+            <th class="text-align-center">Actions</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- End project list -->
+
+    <!-- Modal form registration. -->
+    <!--div ng-include="'adm/views/member/member-create-form.html'"></div-->
+
+    <!-- Member Invitation Modal form. -->
+    <div ng-include="'adm/views/member/member-invitation-form.html'"></div>
+
+    <!-- Modal form details. -->
+    <!--div ng-include="'adm/views/member/member-details-form.html'"></div-->
+
+    <!-- Modal confirmation message. -->
+    <div ng-include="'adm/views/message/confirmation-message-modal.html'"></div>
+
+    <!-- end col s12 -->
+  </div>
+  <!-- end row -->
+</div>
+<!-- end container -->

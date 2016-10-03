@@ -1,0 +1,45 @@
+<!-- Start - Selection Criterias list -->
+<div class="box-body">
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="width-60-pct">Criterias</th>
+      <th class="width-60-pct">Type</th>
+      <th class="width-60-pct">Actions</th>    
+    </tr>  
+  </thead>
+  <tbody>
+    <tr ng-hide=" vm.protocol.selectionCriterias.length > 0">
+      <td align="center" colspan="5">No selection criterias registered.</td>
+    </tr>
+    <tr ng-repeat="selectionCriteria in  vm.protocol.selectionCriterias">
+        <td class="width-30-pct">{{ selectionCriteria.dsSelectionCriteria }}</td>
+        <td class="width-30-pct">
+          <div class="width-30-pct" ng-if="selectionCriteria.tpCriteria == 0">
+            Exclusion
+          </div>
+          <div class="width-30-pct" ng-if="selectionCriteria.tpCriteria == 1">
+            Inclusion
+          </div>
+        </td>
+        <td class="center">
+            <button type="button" class="btn btn-warning" ng-click="vm.editSelectionCriteria(selectionCriteria)">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button type="button" class="btn btn-danger" ng-click="vm.deleteSelectionCriteria(selectionCriteria)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        </td>
+    </tr>
+      
+  </tbody>
+  <tfoot>
+    <tr>
+      <th class="width-60-pct">Criterias</th>
+      <th class="width-60-pct">Type</th>
+      <th class="width-60-pct">Actions</th>    
+    </tr>
+  </tfoot>
+</table>
+</div>
+<!-- End - Selection Criterias list -->

@@ -3,38 +3,39 @@
 
   angular
   .module('app')
-  .controller('StudyController', StudyController);
+  .controller('MemberController', MemberController);
 
-  StudyController.$inject = ['StudyService', 'ProjectService', 'FlashService', '$rootScope', '$http', '$location', '$cookieStore', '$state'];
+  MemberController.$inject = ['MemberService', 'ProjectService', 'FlashService', '$rootScope', '$http', '$location', '$cookieStore', '$state'];
 
-  /****** Início StudyController *****/
-  function StudyController(StudyService, ProjectService, FlashService, $rootScope, $http, $location, $cookieStore, $state) {
+  /****** Início MemberController *****/
+  function MemberController(MemberService, ProjectService, FlashService, $rootScope, $http, $location, $cookieStore, $state) {
     var vm = this;
 
     //vm.dataLoading = true;
 
-    // Study
-    vm.study = {};
-    vm.studies = [];
+    // Member
+    vm.member = {};
+    vm.members = [];
+
+    // Invite
+    vm.invite = {};
 
     vm.clearForm = clearForm;
     vm.showCreateForm = showCreateForm;
-    vm.showImportForm = showImportForm;
+    vm.showMemberInvitationForm = showMemberInvitationForm;
     vm.showEditForm = showEditForm;
     vm.showReadForm = showReadForm;
 
-    vm.getAllStudies = getAllStudies;
-    vm.getStudyByCdCite = getStudyByCdCite;
-    vm.createStudy = createStudy;
-    vm.importStudy = importStudy;
-    vm.readStudy = readStudy;
-    vm.updateStudy = updateStudy;
-    vm.deleteStudy = deleteStudy;
+    vm.getAllMembers = getAllMembers;
+    vm.getMemberByCdCite = getMemberByCdCite;
+    vm.createMember = createMember;
+    vm.inviteMember = inviteMember;
+    vm.readMember = readMember;
+    vm.updateMember = updateMember;
+    vm.deleteMember = deleteMember;
 
-    vm.studiesByFilter = studiesByFilter;
-    vm.dsTitleSearch = "";
-    vm.nrYearSearch = "";
-    vm.nmAuthorSearch = "";
+    vm.membersByFilter = membersByFilter;
+    vm.nmResearcherSearch = "";
 
     // Pagination functions
     vm.range = range;
@@ -46,34 +47,34 @@
     initController();
 
     function initController() {
-      vm.getAllStudies();
+      vm.getAllMembers();
     }
 
     // Forms
     function clearForm() {
-      vm.study = null;
-      vm.flStudy = null;
+      vm.member = null;
+      vm.flMember = null;
     }
 
     function showCreateForm() {
       clearForm();
-      $('#create-modal-title').text("Create Study");
+      $('#create-modal-title').text("Create Member");
       $('#create-modal-form').modal({backdrop: 'static', keyboard: false, show: true, closable: false});
     }
 
-    function showImportForm() {
+    function showMemberInvitationForm() {
       clearForm();
-      $('#import-modal-title').text("Import Study");
-      $('#import-modal-form').modal({backdrop: 'static', keyboard: false, show: true, closable: false});
+      $('#invite-modal-title').text("Member Invitation");
+      $('#member-invitation-modal-form').modal({backdrop: 'static', keyboard: false, show: true, closable: false});
     }
 
     function showEditForm() {
-        $('#edit-modal-title').text("Update study");
+        $('#edit-modal-title').text("Update member");
         $('#edit-modal-form').modal({backdrop: 'static', keyboard: false, show: true, closable: false});
     }
 
     function showReadForm() {
-      $('#read-modal-title').text("Study");
+      $('#read-modal-title').text("Member");
       $('#read-modal-form').modal({backdrop: 'static', keyboard: false, show: true, closable: false});
     }
 
@@ -84,17 +85,17 @@
 
     // CRUD functions
 
-    function getAllStudies() {
+    function getAllMembers() {
       vm.dataLoading = true;
       var currentProject = $cookieStore.get("currentProject");
       var dsSlug = null;
       if (currentProject != null) {
-        dsSlug = currentProject.dsSlug;
+        dsSlug = currentProject.dsSlug
       }
-      ProjectService.GetStudiesByDsKey(dsSlug).then(function (response) {
+      ProjectService.GetMembersByDsKey(dsSlug).then(function (response) {
         //if (response.code === 1000) {
-          var studies = response;
-          vm.studies = studies;
+          var members = response;
+          vm.members = members;
           vm.dataLoading = false;
         //} else {
           // console.log(response.data);
@@ -104,13 +105,13 @@
       });
     }
 
-    function getStudyByCdCite(cdCite) {
+    function getMemberByCdCite(cdCite) {
       //vm.dataLoading = true;
-      StudyService.GetByCdCite(cdCite).then(function (response) {
+      MemberService.GetByCdCite(cdCite).then(function (response) {
         //console.log(response.data);
         //if (response.code === 1000) {
-        var study = response;
-        return study;
+        var member = response;
+        return member;
         //} else {
           // console.log(response.data);
           //FlashService.Error(response.description);
@@ -119,16 +120,16 @@
       });
     }
 
-    function createStudy() {
-      //alert(vm.study.tpReview  + " " + vm.study.dsSlug + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
+    function createMember() {
+      //alert(vm.member.tpReview  + " " + vm.member.dsSlug + " " + vm.member.dsTitle + " " + vm.member.dsMember);
       /*vm.dataLoading = true;
-      StudyService.Create(vm.study).then(function (response) {
+      MemberService.Create(vm.member).then(function (response) {
         console.log(response.data);
         if (response.code === 1002) {
           FlashService.Success(response.description, true);
-          vm.study = null;
+          vm.member = null;
           $('#create-modal-form').closeModal();
-          vm.getAllStudies();
+          vm.getAllMembers();
         } else {
           FlashService.Error(response.description, true);
           vm.dataLoading = false;
@@ -136,16 +137,16 @@
       });*/
     };
 
-    function importStudy() {
-      //alert(vm.study.tpReview  + " " + vm.study.dsSlug + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
+    function inviteMember() {
+      //alert(vm.member.tpReview  + " " + vm.member.dsSlug + " " + vm.member.dsTitle + " " + vm.member.dsMember);
       /*vm.dataLoading = true;
-      StudyService.Create(vm.study).then(function (response) {
+      MemberService.Create(vm.member).then(function (response) {
         console.log(response.data);
         if (response.code === 1002) {
           FlashService.Success(response.description, true);
-          vm.study = null;
+          vm.member = null;
           $('#create-modal-form').closeModal();
-          vm.getAllStudies();
+          vm.getAllMembers();
         } else {
           FlashService.Error(response.description, true);
           vm.dataLoading = false;
@@ -153,12 +154,12 @@
       });*/
     };
 
-    function readStudy(cdCiteKey) {
+    function readMember(cdCiteKey) {
       //vm.dataLoading = true;
-      StudyService.GetByCdCiteKey(cdCiteKey).then(function (response) {
+      MemberService.GetByCdCiteKey(cdCiteKey).then(function (response) {
         //console.log(response.data);
         //if (response.code === 1000) {
-        vm.study = response;
+        vm.member = response;
         showReadForm();
         //} else {
           //FlashService.Error(response.description);
@@ -167,17 +168,17 @@
       });
     }
 
-    function updateStudy(study) {
-      alert(vm.study.tpReview  + " " + vm.study.dsSlug + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
+    function updateMember(member) {
+      alert(vm.member.tpReview  + " " + vm.member.dsSlug + " " + vm.member.dsTitle + " " + vm.member.dsMember);
       /*
       vm.dataLoading = true;
-      StudyService.Update(vm.study).then(function (response) {
+      MemberService.Update(vm.member).then(function (response) {
         console.log(response.data);
         if (response.code === 1002) {
           FlashService.Success(response.description, true);
-          vm.study = null;
+          vm.member = null;
           $('#edit-modal-form').closeModal();
-          vm.getAllStudies();
+          vm.getAllMembers();
         } else {
           FlashService.Error(response.description, true);
           vm.dataLoading = false;
@@ -185,17 +186,17 @@
       });*/
     };
 
-    function deleteStudy(cdCiteKey) {
+    function deleteMember(cdCiteKey) {
       showConfirmationMessage();
       /*vm.dataLoading = true;
-      if (Do you really want to delete this study?) {
-      StudyService.Delete(vm.study).then(function (response) {
+      if (Do you really want to delete this member?) {
+      MemberService.Delete(vm.member).then(function (response) {
         console.log(response.data);
         if (response.code === 1002) {
           FlashService.Success(response.description, true);
-          vm.study = null;
+          vm.member = null;
           $('#create-modal-form').closeModal();
-          vm.getAllStudies();
+          vm.getAllMembers();
         } else {
           FlashService.Error(response.description, true);
           vm.dataLoading = false;
@@ -205,14 +206,10 @@
     }
 
     /****** Start filter functions *****/
-    function studiesByFilter() {
-        return vm.studies.filter(function(study) {
-           return (study.dsTitle.toString().indexOf(vm.dsTitleSearch) > -1
-                              || study.dsTitle.toLowerCase().indexOf(vm.dsTitleSearch.toLowerCase()) > -1)
-                    && (study.nrYear == null || study.nrYear.toString().indexOf(vm.nrYearSearch) > -1
-                                       || study.nrYear.toString().toLowerCase().indexOf(vm.nrYearSearch.toLowerCase()) > -1)
-                     && (study.nmAuthor == null || study.nmAuthor.toString().indexOf(vm.nmAuthorSearch) > -1
-                                        || study.nmAuthor.toString().toLowerCase().indexOf(vm.nmAuthorSearch.toLowerCase()) > -1);
+    function membersByFilter() {
+        return vm.members.filter(function(member) {
+           return (member.nmResearcher.toString().indexOf(vm.nmResearcherSearch) > -1
+                              || member.nmResearcher.toLowerCase().indexOf(vm.nmResearcherSearch.toLowerCase()) > -1);
         });
     };
     /****** End filters functions *****/
@@ -222,7 +219,7 @@
     vm.itemsPerPage = 30;
 
     function pageCount() {
-      return Math.ceil(vm.studiesByFilter().length / vm.itemsPerPage) - 1;
+      return Math.ceil(vm.membersByFilter().length / vm.itemsPerPage) - 1;
     };
 
     function range() {
@@ -260,7 +257,7 @@
     };
    /****** End pagination functions *****/
 
- } /****** End StudyController *****/
+ } /****** End MemberController *****/
 
   /****** Start pager *****/
   angular
