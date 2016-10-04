@@ -88,11 +88,11 @@
     function getAllMembers() {
       vm.dataLoading = true;
       var currentProject = $cookieStore.get("currentProject");
-      var dsSlug = null;
+      var dsKey = null;
       if (currentProject != null) {
-        dsSlug = currentProject.dsSlug
+        dsKey = currentProject.dsKey
       }
-      ProjectService.GetMembersByDsKey(dsSlug).then(function (response) {
+      ProjectService.GetMembersByDsKey(dsKey).then(function (response) {
         //if (response.code === 1000) {
           var members = response;
           vm.members = members;
@@ -121,7 +121,7 @@
     }
 
     function createMember() {
-      //alert(vm.member.tpReview  + " " + vm.member.dsSlug + " " + vm.member.dsTitle + " " + vm.member.dsMember);
+      //alert(vm.member.tpReview  + " " + vm.member.dsKey + " " + vm.member.dsTitle + " " + vm.member.dsMember);
       /*vm.dataLoading = true;
       MemberService.Create(vm.member).then(function (response) {
         console.log(response.data);
@@ -138,7 +138,7 @@
     };
 
     function inviteMember() {
-      //alert(vm.member.tpReview  + " " + vm.member.dsSlug + " " + vm.member.dsTitle + " " + vm.member.dsMember);
+      //alert(vm.member.tpReview  + " " + vm.member.dsKey + " " + vm.member.dsTitle + " " + vm.member.dsMember);
       /*vm.dataLoading = true;
       MemberService.Create(vm.member).then(function (response) {
         console.log(response.data);
@@ -169,7 +169,7 @@
     }
 
     function updateMember(member) {
-      alert(vm.member.tpReview  + " " + vm.member.dsSlug + " " + vm.member.dsTitle + " " + vm.member.dsMember);
+      alert(vm.member.tpReview  + " " + vm.member.dsKey + " " + vm.member.dsTitle + " " + vm.member.dsMember);
       /*
       vm.dataLoading = true;
       MemberService.Update(vm.member).then(function (response) {

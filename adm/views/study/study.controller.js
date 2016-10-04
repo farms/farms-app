@@ -87,11 +87,11 @@
     function getAllStudies() {
       vm.dataLoading = true;
       var currentProject = $cookieStore.get("currentProject");
-      var dsSlug = null;
+      var dsKey = null;
       if (currentProject != null) {
-        dsSlug = currentProject.dsSlug;
+        dsKey = currentProject.dsKey;
       }
-      ProjectService.GetStudiesByDsKey(dsSlug).then(function (response) {
+      ProjectService.GetStudiesByDsKey(dsKey).then(function (response) {
         //if (response.code === 1000) {
           var studies = response;
           vm.studies = studies;
@@ -120,7 +120,7 @@
     }
 
     function createStudy() {
-      //alert(vm.study.tpReview  + " " + vm.study.dsSlug + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
+      //alert(vm.study.tpReview  + " " + vm.study.dsKey + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
       /*vm.dataLoading = true;
       StudyService.Create(vm.study).then(function (response) {
         console.log(response.data);
@@ -137,7 +137,7 @@
     };
 
     function importStudy() {
-      //alert(vm.study.tpReview  + " " + vm.study.dsSlug + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
+      //alert(vm.study.tpReview  + " " + vm.study.dsKey + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
       /*vm.dataLoading = true;
       StudyService.Create(vm.study).then(function (response) {
         console.log(response.data);
@@ -168,7 +168,7 @@
     }
 
     function updateStudy(study) {
-      alert(vm.study.tpReview  + " " + vm.study.dsSlug + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
+      alert(vm.study.tpReview  + " " + vm.study.dsKey + " " + vm.study.dsTitle + " " + vm.study.dsStudy);
       /*
       vm.dataLoading = true;
       StudyService.Update(vm.study).then(function (response) {

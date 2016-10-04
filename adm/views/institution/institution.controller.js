@@ -88,11 +88,11 @@
     function getAllInstitutions() {
       vm.dataLoading = true;
       var currentProject = $cookieStore.get("currentProject");
-      var dsSlug = null;
+      var dsKey = null;
       if (currentProject != null) {
-        dsSlug = currentProject.dsSlug
+        dsKey = currentProject.dsKey
       }
-      ProjectService.GetInstitutionsByDsKey(dsSlug).then(function (response) {
+      ProjectService.GetInstitutionsByDsKey(dsKey).then(function (response) {
         //if (response.code === 1000) {
           var institutions = response;
           vm.institutions = institutions;
@@ -121,7 +121,7 @@
     }
 
     function createInstitution() {
-      //alert(vm.institution.tpReview  + " " + vm.institution.dsSlug + " " + vm.institution.dsTitle + " " + vm.institution.dsInstitution);
+      //alert(vm.institution.tpReview  + " " + vm.institution.dsKey + " " + vm.institution.dsTitle + " " + vm.institution.dsInstitution);
       /*vm.dataLoading = true;
       InstitutionService.Create(vm.institution).then(function (response) {
         console.log(response.data);
@@ -138,7 +138,7 @@
     };
 
     function inviteInstitution() {
-      //alert(vm.institution.tpReview  + " " + vm.institution.dsSlug + " " + vm.institution.dsTitle + " " + vm.institution.dsInstitution);
+      //alert(vm.institution.tpReview  + " " + vm.institution.dsKey + " " + vm.institution.dsTitle + " " + vm.institution.dsInstitution);
       /*vm.dataLoading = true;
       InstitutionService.Create(vm.institution).then(function (response) {
         console.log(response.data);
@@ -169,7 +169,7 @@
     }
 
     function updateInstitution(institution) {
-      alert(vm.institution.tpReview  + " " + vm.institution.dsSlug + " " + vm.institution.dsTitle + " " + vm.institution.dsInstitution);
+      alert(vm.institution.tpReview  + " " + vm.institution.dsKey + " " + vm.institution.dsTitle + " " + vm.institution.dsInstitution);
       /*
       vm.dataLoading = true;
       InstitutionService.Update(vm.institution).then(function (response) {

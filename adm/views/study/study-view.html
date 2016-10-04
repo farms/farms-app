@@ -107,13 +107,13 @@
             <td class="width-30-pct">{{ study.nrYear }}</td>
             <td class="width-30-pct">{{ study.nmAuthor }}</td>
             <td class="center">
-              <!--button type="button" class="btn btn-default" ng-click="vm.readStudy(study.dsSlug)">
+              <!--button type="button" class="btn btn-default" ng-click="vm.readStudy(study.dsKey)">
                 <span class="glyphicon glyphicon-eye-open"></span>
               </button-->
               <button type="button" class="btn btn-warning" ng-click="vm.editStudy(study)">
                 <span class="glyphicon glyphicon-pencil"></span>
               </button>
-              <button type="button" class="btn btn-danger" ng-click="vm.deleteStudy(study.dsSlug)">
+              <button type="button" class="btn btn-danger" ng-click="vm.deleteStudy(study.dsKey)">
                 <span class="glyphicon glyphicon-trash"></span>
               </button>
             </td>
